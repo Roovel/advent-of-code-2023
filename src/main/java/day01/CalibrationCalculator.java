@@ -21,6 +21,14 @@ public class CalibrationCalculator {
         System.out.println("-----");
     }
 
+    public void sumOfCalibrationValuesPart2() {
+        System.out.println("-----");
+        System.out.println("Part 2");
+        System.out.print("The sum of all of the calibration values is: ");
+        System.out.println("TODO");
+        System.out.println("-----");
+    }
+
     private int arrayListValuePart1() {
         ArrayList<String> lines = textUtil.linesToArrayList();
         int firstDigit = 0;
