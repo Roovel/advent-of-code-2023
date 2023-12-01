@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class TextUtil {
 
-    private final Scanner scanner;
+    private Scanner scanner;
 
     public TextUtil(String filePath) {
         File file = new File(filePath);
@@ -25,5 +25,18 @@ public class TextUtil {
             lines.add(scanner.nextLine());
         }
         return lines;
+    }
+
+    public void closeScanner() {
+        scanner.close();
+    }
+
+    public void resetScanner(String filePath) {
+        closeScanner();
+        try {
+            scanner = new Scanner(new File(filePath));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
