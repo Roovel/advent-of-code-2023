@@ -2,23 +2,30 @@ package day01;
 
 import java.util.ArrayList;
 
-import util.TextManipulation;
+import util.TextUtil;
 
 import static java.lang.Character.isLetter;
 
 public class CalibrationCalculator {
 
-    TextManipulation parseText = new TextManipulation("src/main/resources/inputs/01/input01.txt");
+    TextUtil textUtil = new TextUtil("src/main/resources/inputs/01/input01.txt");
 
     public CalibrationCalculator() {
     }
 
-    public void ArrayListValue() {
-        ArrayList<String> lines = parseText.linesToArrayList();
+    public void sumOfCalibrationValuesPart1() {
+        System.out.println("-----");
+        System.out.println("Part 1");
+        System.out.print("The sum of all of the calibration values is: ");
+        System.out.println(arrayListValuePart1());
+        System.out.println("-----");
+    }
+
+    private int arrayListValuePart1() {
+        ArrayList<String> lines = textUtil.linesToArrayList();
         int firstDigit = 0;
         int secondDigit = 0;
         int digit;
-        String appendedDigits;
         int linesSum = 0;
         boolean gotFirstDigit = false;
         boolean gotSecondDigit = false;
@@ -36,17 +43,20 @@ public class CalibrationCalculator {
                 }
             }
             if (gotSecondDigit) {
-                appendedDigits = String.valueOf(firstDigit) + secondDigit;
-                linesSum += Integer.parseInt(appendedDigits);
+                linesSum += concatenateDigits(firstDigit, secondDigit);
             } else if (gotFirstDigit) {
-                appendedDigits = String.valueOf(firstDigit) + firstDigit;
-                linesSum += Integer.parseInt(appendedDigits);
+                linesSum += concatenateDigits(firstDigit, firstDigit);
             }
             firstDigit = 0;
             secondDigit = 0;
             gotFirstDigit = false;
             gotSecondDigit = false;
         }
-        System.out.println(linesSum);
+        return linesSum;
+    }
+
+    private int concatenateDigits(int firstDigit, int secondDigit) {
+        String appendedDigits = String.valueOf(firstDigit) + secondDigit;
+        return Integer.parseInt(appendedDigits);
     }
 }

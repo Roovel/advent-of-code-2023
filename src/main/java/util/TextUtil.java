@@ -5,11 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TextManipulation {
+public class TextUtil {
 
     private final Scanner scanner;
 
-    public TextManipulation(String filePath) {
+    public TextUtil(String filePath) {
         File file = new File(filePath);
 
         try {
