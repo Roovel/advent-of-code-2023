@@ -35,16 +35,15 @@ public class CalibrationCalculator {
 
     private int arrayListValuePart1() {
         ArrayList<String> lines = getLines();
-        int firstDigit = 0;
-        int secondDigit = 0;
-        int digit;
         int linesSum = 0;
-        boolean gotFirstDigit = false;
-        boolean gotSecondDigit = false;
         for (String line : lines) {
+            int firstDigit = 0;
+            int secondDigit = 0;
+            boolean gotFirstDigit = false;
+            boolean gotSecondDigit = false;
             for (int i = 0; i < line.length(); i++) {
                 if (!isLetter(line.charAt(i))) {
-                    digit = Integer.parseInt(String.valueOf(line.charAt(i)));
+                    int digit = Integer.parseInt(String.valueOf(line.charAt(i)));
                     if (!gotFirstDigit) {
                         firstDigit = digit;
                         gotFirstDigit = true;
@@ -54,27 +53,19 @@ public class CalibrationCalculator {
                     }
                 }
             }
-            if (gotSecondDigit) {
-                linesSum += concatenateDigits(firstDigit, secondDigit);
-            } else if (gotFirstDigit) {
-                linesSum += concatenateDigits(firstDigit, firstDigit);
-            }
-            firstDigit = 0;
-            secondDigit = 0;
-            gotFirstDigit = false;
-            gotSecondDigit = false;
+            linesSum = sumDigits(linesSum, firstDigit, secondDigit, gotFirstDigit, gotSecondDigit);
         }
         return linesSum;
     }
 
     private int arraylistValuePart2() {
-        boolean gotFirstDigit = false;
-        boolean gotSecondDigit = false;
-        int firstDigit = 0;
-        int secondDigit = 0;
-        int linesSum = 0;
         ArrayList<String> lines = getLines();
+        int linesSum = 0;
         for (String line : lines) {
+            int firstDigit = 0;
+            int secondDigit = 0;
+            boolean gotFirstDigit = false;
+            boolean gotSecondDigit = false;
             for (int i = 0; i < line.length(); i++) {
                 if (!isLetter(line.charAt(i))) {
                     int digit = Integer.parseInt(String.valueOf(line.charAt(i)));
@@ -101,15 +92,7 @@ public class CalibrationCalculator {
                     }
                 }
             }
-            if (gotSecondDigit) {
-                linesSum += concatenateDigits(firstDigit, secondDigit);
-            } else if (gotFirstDigit) {
-                linesSum += concatenateDigits(firstDigit, firstDigit);
-            }
-            firstDigit = 0;
-            secondDigit = 0;
-            gotFirstDigit = false;
-            gotSecondDigit = false;
+            linesSum = sumDigits(linesSum, firstDigit, secondDigit, gotFirstDigit, gotSecondDigit);
         }
         return linesSum;
     }
@@ -122,5 +105,14 @@ public class CalibrationCalculator {
     private int concatenateDigits(int firstDigit, int secondDigit) {
         String appendedDigits = String.valueOf(firstDigit) + secondDigit;
         return Integer.parseInt(appendedDigits);
+    }
+
+    private int sumDigits(int linesSum, int firstDigit, int secondDigit, boolean gotFirstDigit, boolean gotSecondDigit) {
+        if (gotSecondDigit) {
+            linesSum += concatenateDigits(firstDigit, secondDigit);
+        } else if (gotFirstDigit) {
+            linesSum += concatenateDigits(firstDigit, firstDigit);
+        }
+        return linesSum;
     }
 }
