@@ -1,35 +1,50 @@
 package day02;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import util.TextUtil;
 
 public class Games {
 
-    public Map<Integer, Boolean> gameMap = new HashMap<>();
     public ArrayList<String> gameList = new ArrayList<>();
     private final TextUtil textUtil = new TextUtil("src/main/resources/inputs/02/input02.txt");
-    //    private final TextUtil textUtil = new TextUtil("src/main/resources/inputs/test");
     private final Colors colors = new Colors();
-
-    public void addGameResult(Integer gameId, Boolean win) {
-        this.gameMap.put(gameId, win);
-    }
-
-    public void clear() {
-        this.colors.clearColors();
-    }
 
     public void getPart1Result() {
         System.out.println("-----");
         System.out.println("PART 1");
-        System.out.println("The sum of the IDs of winning games is: " + wonGamesIdSum());
+        System.out.println("The sum of the IDs of winning games is: " + getWonGamesIdSum());
         System.out.println("-----");
     }
 
-    public int wonGamesIdSum() {
+    public void getPart2Result() {
+        System.out.println("-----");
+        System.out.println("PART 2");
+        System.out.println("The sum of the power of game sets is: " + getSumOfPowers());
+        System.out.println("-----");
+    }
+
+    public int getPowerOfGameSet(int gameId) {
+        getGameColors(gameId);
+        int power = getColorValue("red");
+        power *= getColorValue("green");
+        power *= getColorValue("blue");
+        return power;
+
+    }
+
+    public int getSumOfPowers() {
+        int sum = 0;
+        int gameId = 1;
+        for (String game : gameList) {
+            sum += getPowerOfGameSet(gameId);
+            gameId++;
+            this.colors.clearColors();
+        }
+        return sum;
+    }
+
+    public int getWonGamesIdSum() {
         int sum = 0;
         int gameId = 1;
         for (String game : gameList) {
@@ -52,13 +67,6 @@ public class Games {
         return "Games{" +
                 "gameList=" + gameList +
                 '}';
-    }
-
-    public void getAllColorValues() {
-        getColorValue("red");
-        getColorValue("green");
-        getColorValue("blue");
-        System.out.println(this.colors);
     }
 
     public boolean compareColorValues() {
@@ -99,6 +107,5 @@ public class Games {
     private String getGame(int Id) {
         return gameList.get(Id - 1);
     }
-
 }
 

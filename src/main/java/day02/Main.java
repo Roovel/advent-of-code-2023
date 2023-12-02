@@ -7,6 +7,7 @@ public class Main {
         Games games = new Games();
         games.generateGameList();
         games.getPart1Result();
+        games.getPart2Result();
 
     }
 }
