@@ -13,4 +13,8 @@ public class ColorMap {
         colorMap.put("green", 13);
         colorMap.put("blue", 14);
     }
+
+    public static Map<String, Integer> getColorMap() {
+        return colorMap;
+    }
 }

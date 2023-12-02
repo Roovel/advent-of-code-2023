@@ -20,20 +20,6 @@ public class Colors {
         }
     }
 
-    public int getColorValue(String color) {
-        int colorAmount = 0;
-        try {
-            switch (color) {
-                case "red" -> colorAmount = getHighestColorAmount(red);
-                case "green" -> colorAmount = getHighestColorAmount(green);
-                case "blue" -> colorAmount = getHighestColorAmount(blue);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return colorAmount;
-    }
-
     @Override
     public String toString() {
         return "Colors: " +
@@ -54,7 +40,7 @@ public class Colors {
         blue.add(amount);
     }
 
-    private int getHighestColorAmount(ArrayList<Integer> color) {
+    public int getHighestColorAmount(ArrayList<Integer> color) {
         int highestEntry = 0;
         for (Integer entry : color) {
             if (entry > highestEntry) {
@@ -64,5 +50,25 @@ public class Colors {
         color.clear();
         color.add(highestEntry);
         return highestEntry;
+    }
+
+    public ArrayList<Integer> getColor(String color) {
+        ArrayList<Integer> result = new ArrayList<>();
+        try {
+            switch (color) {
+                case "red" -> result = red;
+                case "green" -> result = green;
+                case "blue" -> result = blue;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    public void clearColors() {
+        red.clear();
+        green.clear();
+        blue.clear();
     }
 }
