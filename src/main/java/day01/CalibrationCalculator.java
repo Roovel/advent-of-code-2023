@@ -2,7 +2,6 @@ package day01;
 
 import java.util.ArrayList;
 
-import util.NumberMap;
 import util.TextUtil;
 
 import static java.lang.Character.isLetter;
