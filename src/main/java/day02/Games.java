@@ -7,7 +7,7 @@ import util.TextUtil;
 public class Games {
 
     public ArrayList<String> gameList = new ArrayList<>();
-    private final TextUtil textUtil = new TextUtil("src/main/resources/inputs/02/input02.txt");
+    private final TextUtil textUtil = new TextUtil("src/Main/resources/inputs/02/input02.txt");
     private final Colors colors = new Colors();
 
     public void getPart1Result() {

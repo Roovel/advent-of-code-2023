@@ -8,7 +8,7 @@ import static java.lang.Character.isLetter;
 
 public class CalibrationCalculator {
 
-    private final String filePath = "src/main/resources/inputs/01/input01.txt";
+    private final String filePath = "src/Main/resources/inputs/01/input01.txt";
     TextUtil textUtil = new TextUtil(filePath);
 
     public CalibrationCalculator() {
